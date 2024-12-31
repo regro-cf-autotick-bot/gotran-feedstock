@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: e160533e4a4a73c781e54dfd7017141589d2caa22593312b3ea03ec3a74f4880
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - gotran=gotran.__main__:main
@@ -30,10 +30,10 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - modelparameters
     - numpy
     - scipy
@@ -46,6 +46,7 @@ test:
 
   requires:
     - pip
+    - python {{ python_min }}
 
   commands:
     - pip check
